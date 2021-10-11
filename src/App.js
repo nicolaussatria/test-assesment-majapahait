@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import Card from "react-bootstrap/Card";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+export default function App() {
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+      setCards(res.data);
+      console.log(res.data);
+    };
+    fetchCards();
+  }, [cards]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <section>
+        {cards.map((card) => {
+          const { userId, id, title, body } = card;
+          return (
+            <ul>
+              <Card border="primary" style={{ width: "18rem" }}>
+                <Card.Body>
+                  <Card.Title>{title}</Card.Title>
+                  <Card.Text>{body}</Card.Text>
+                </Card.Body>
+              </Card>
+            </ul>
+          );
+        })}
+      </section>
+    </>
   );
 }
-
-export default App;
