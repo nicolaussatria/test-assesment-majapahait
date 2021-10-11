@@ -7,6 +7,13 @@
   pointer-events: none;
 }
 
+.books1 {
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  width: auto;
+  justify-content: center;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

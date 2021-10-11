@@ -3,6 +3,8 @@ import Card from "react-bootstrap/Card";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
+import { Container, Col, Row } from "react-bootstrap";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
@@ -23,14 +25,16 @@ export default function App() {
         {cards.map((card) => {
           const { userId, id, title, body } = card;
           return (
-            <ul>
-              <Card border="primary" style={{ width: "18rem" }}>
-                <Card.Body>
-                  <Card.Title>{title}</Card.Title>
-                  <Card.Text>{body}</Card.Text>
-                </Card.Body>
-              </Card>
-            </ul>
+            <Container className=" mt-3 mx-auto">
+              <ul>
+                <Card border="primary" style={{ width: "18rem" }}>
+                  <Card.Body>
+                    <Card.Title>{title}</Card.Title>
+                    <Card.Text>{body}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </ul>
+            </Container>
           );
         })}
       </section>
